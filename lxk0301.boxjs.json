@@ -862,6 +862,27 @@
         "https://raw.githubusercontent.com/58xinian/icon/master/jd_factory_mini.png",
         "https://raw.githubusercontent.com/58xinian/icon/master/jd_factory.png"
       ]
+    },
+     {
+      "id": "jd_apple_live",
+      "name": "苹果抽奖机",
+      "keys": [],
+      "settings": [
+        {
+          "id": "jdappleliveNotify",
+          "name": "静默运行",
+          "val": true,
+          "type": "boolean",
+          "desc": "运行京东摇钱树脚本时不发出系统弹窗通知"
+        }
+      ],
+      "author": "@lxk0301",
+      "repo": "https://github.com/lxk0301/jd_scripts",
+      "script": "https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_apple_live.js",
+      "icons": [
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdyqs_mini.png",
+        "https://raw.githubusercontent.com/58xinian/icon/master/jdyqs.png"
+      ]
     }
   ]
 }
