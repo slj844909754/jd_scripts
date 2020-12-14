@@ -885,8 +885,78 @@
           "val": true,
           "type": "boolean",
           "desc": "运行京东摇钱树脚本时不发出系统弹窗通知"
+        },
+         {
+          "id": "jd_apple_live_name",
+          "name": "京东账号一昵称",
+          "val": "",
+          "type": "text",
+          "desc": "京东账号昵称,用于区分自己的京东账号(非必填，建议多个京东账号使用)"
+        },
+        {
+          "id": "jd_apple_live1",
+          "name": "账号一的互助码1",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码.这是别人的shareCode,你帮别人助力."
+        },
+        {
+          "id": "jd_apple_live2",
+          "name": "账号一的互助码2",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码."
+        },
+        {
+          "id": "jd_apple_live3",
+          "name": "账号一的互助码3",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码.这是别人的shareCode,你帮别人助力."
+        },
+        {
+          "id": "jd_apple_live4",
+          "name": "账号一的互助码4",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码.这是别人的shareCode,你帮别人助力."
+        },
+        {
+          "id": "jd2_apple_live_name",
+          "name": "京东账号二昵称",
+          "val": "",
+          "type": "text",
+          "desc": "京东账号昵称,用于区分自己的京东账号(非必填，建议多个京东账号使用)"
+        },
+        {
+          "id": "jd2_apple_live1",
+          "name": "账号二的互助码1",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码.这是别人的shareCode,你帮别人助力."
+        },
+        {
+          "id": "jd2_apple_live2",
+          "name": "账号二的互助码2",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码."
+        },
+        {
+          "id": "jd2_apple_live3",
+          "name": "账号二的互助码3",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码.这是别人的shareCode,你帮别人助力."
+        },
+        {
+          "id": "jd2_apple_live4",
+          "name": "账号二的互助码4",
+          "val": "",
+          "type": "text",
+          "desc": "京东水果互助码.这是别人的shareCode,你帮别人助力."
         }
-      ],
+       ],
       "author": "@lxk0301",
       "repo": "https://github.com/lxk0301/jd_scripts",
       "script": "https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_apple_live.js",
