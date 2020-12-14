@@ -866,7 +866,18 @@
      {
       "id": "jd_apple_live",
       "name": "苹果抽奖机",
-      "keys": [],
+      "keys": [
+        "jd_apple_live_name",
+        "jd_apple_live1",
+        "jd_apple_live2",
+        "jd_apple_live3",
+        "jd_apple_live4",
+        "jd2_apple_live_name",
+        "jd2_apple_live1",
+        "jd2_apple_live2",
+        "jd2_apple_live3",
+        "jd2_apple_live4"
+      ],
       "settings": [
         {
           "id": "jdappleliveNotify",
