@@ -34,9 +34,19 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 //下面给出两个账号的填写示例（iOS只支持2个京东账号）
 let shareCodes = [ // IOS本地脚本用户这个列表填入你要助力的好友的shareCode
                    //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-  '66j4yt3ebl5ierjljoszp7e4izzbzaqhi5k2unz2afwlyqsgnasq@olmijoxgmjutyrsovl2xalt2tbtfmg6sqldcb3q@e7lhibzb3zek27amgsvywffxx7hxgtzstrk2lba@e7lhibzb3zek32e72n4xesxmgc2m76eju62zk3y',
+  'dq3sidmtwxrgcgjp6yyygc536yd4cgeauzhq3ny@rtsljotwy2w35gm7v2ixyzix3oeohyq2q6ypopy@xooz5rk4vgwfnfczn7ehuf7inwotuxxckajej4q@xooz5rk4vgwfmmsz7yfstv7t7h2uzkaefyagdgi@mlrdw3aw26j3wnbv24lfwypbmt2dgsnn6cnfkmq',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'olmijoxgmjutyx55upqaqxrblt7f3h26dgj2riy@4npkonnsy7xi3p6pjfxg6ct5gll42gmvnz7zgoy@6dygkptofggtp6ffhbowku3xgu@mlrdw3aw26j3wgzjipsxgonaoyr2evrdsifsziy',
+  'olmijoxgmjutzzwxajkkuj2lc6kdz5z4jkoro7a@xooz5rk4vgwfnfczn7ehuf7inwotuxxckajej4q@xooz5rk4vgwfmmsz7yfstv7t7h2uzkaefyagdgi@mlrdw3aw26j3wnbv24lfwypbmt2dgsnn6cnfkmq@dq3sidmtwxrgcgjp6yyygc536yd4cgeauzhq3ny',
+  //账号三的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'olmijoxgmjutzzwxajkkuj2lc6kdz5z4jkoro7a@rtsljotwy2w35gm7v2ixyzix3oeohyq2q6ypopy@xooz5rk4vgwfnfczn7ehuf7inwotuxxckajej4q@xooz5rk4vgwfmmsz7yfstv7t7h2uzkaefyagdgi@dq3sidmtwxrgcgjp6yyygc536yd4cgeauzhq3ny',
+  //账号四的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'olmijoxgmjutzzwxajkkuj2lc6kdz5z4jkoro7a@rtsljotwy2w35gm7v2ixyzix3oeohyq2q6ypopy@xooz5rk4vgwfnfczn7ehuf7inwotuxxckajej4q@mlrdw3aw26j3wnbv24lfwypbmt2dgsnn6cnfkmq@dq3sidmtwxrgcgjp6yyygc536yd4cgeauzhq3ny',
+  //账号五的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'olmijoxgmjutzzwxajkkuj2lc6kdz5z4jkoro7a@rtsljotwy2w35gm7v2ixyzix3oeohyq2q6ypopy@xooz5rk4vgwfmmsz7yfstv7t7h2uzkaefyagdgi@mlrdw3aw26j3wnbv24lfwypbmt2dgsnn6cnfkmq@dq3sidmtwxrgcgjp6yyygc536yd4cgeauzhq3ny',
+  //账号六的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'olmijoxgmjutzzwxajkkuj2lc6kdz5z4jkoro7a@rtsljotwy2w35gm7v2ixyzix3oeohyq2q6ypopy@xooz5rk4vgwfnfczn7ehuf7inwotuxxckajej4q@xooz5rk4vgwfmmsz7yfstv7t7h2uzkaefyagdgi@mlrdw3aw26j3wnbv24lfwypbmt2dgsnn6cnfkmq',
+  //账号七的好友shareCode,不同好友的shareCode中间用@符号隔开
+  'olmijoxgmjutzzwxajkkuj2lc6kdz5z4jkoro7a@rtsljotwy2w35gm7v2ixyzix3oeohyq2q6ypopy@xooz5rk4vgwfnfczn7ehuf7inwotuxxckajej4q@xooz5rk4vgwfmmsz7yfstv7t7h2uzkaefyagdgi@mlrdw3aw26j3wnbv24lfwypbmt2dgsnn6cnfkmq',
 ]
 let currentRoundId = null;//本期活动id
 let lastRoundId = null;//上期id
