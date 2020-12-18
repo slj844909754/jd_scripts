@@ -69,7 +69,7 @@ $.newShareCodes = ['2d3f2616bcc3a64bc0f7bfb3e8f0e44e', '4cc9ae42b4c5ca4a445cac1d
     }
   }
   // 帮助作者，把作者助力码放到用户助力码之后
-  await getAuthorShareCode('["2d3f2616bcc3a64bc0f7bfb3e8f0e44e","4cc9ae42b4c5ca4a445cac1d4c816549","7616447e44390ef2983eca33c7029d18","cce593d57f6f54ad6ca2d1ada3eac38f","f2e2e29155750e551b31e6ab021b8c88"]');
+  await getAuthorShareCode("2d3f2616bcc3a64bc0f7bfb3e8f0e44e","4cc9ae42b4c5ca4a445cac1d4c816549","7616447e44390ef2983eca33c7029d18","cce593d57f6f54ad6ca2d1ada3eac38f","f2e2e29155750e551b31e6ab021b8c88");
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
