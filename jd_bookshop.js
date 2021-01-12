@@ -21,11 +21,11 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
-const ACT_ID = 'dz2010100034444201', shareUuid = 'cb1c46cde1c14f66947bb629b490d884'
+const ACT_ID = 'dz2010100034444201', shareUuid = '28a699ac78d74aa3b31f7103597f8927'
 
 let inviteCodes = [
-  'cb1c46cde1c14f66947bb629b490d884@6467c3f542c546ba8a680caa767eaeaa@7ef546ff87b843a8bab3f60cc4b31e43@a6e2d36e5f08486b8e91c041e6eb9567@efed3b20ee074d29a33cb1aa872fc8d5@64630f5324324719a0ed40557554a36d@4afd97472c9e485fa7a3f2752590dced',
-  'cb1c46cde1c14f66947bb629b490d884@6467c3f542c546ba8a680caa767eaeaa@7ef546ff87b843a8bab3f60cc4b31e43@a6e2d36e5f08486b8e91c041e6eb9567@efed3b20ee074d29a33cb1aa872fc8d5@64630f5324324719a0ed40557554a36d@4afd97472c9e485fa7a3f2752590dced'
+  '28a699ac78d74aa3b31f7103597f8927',
+  '28a699ac78d74aa3b31f7103597f8927'
 ]
 
 if ($.isNode()) {
@@ -683,10 +683,18 @@ function requireConfig() {
   return new Promise(resolve => {
     console.log(`开始获取${$.name}配置文件\n`);
     //Node.js用户请在jdCookie.js处填写京东ck;
-    const shareCodes = []
+    let shareCodes = []
     console.log(`共${cookiesArr.length}个京东账号\n`);
     $.shareCodesArr = [];
     if ($.isNode()) {
+      //自定义助力码
+      if (process.env.BOOKSHOP_SHARECODES) {
+        if (process.env.BOOKSHOP_SHARECODES.indexOf('\n') > -1) {
+          shareCodes = process.env.BOOKSHOP_SHARECODES.split('\n');
+        } else {
+          shareCodes = process.env.BOOKSHOP_SHARECODES.split('&');
+        }
+      }
       Object.keys(shareCodes).forEach((item) => {
         if (shareCodes[item]) {
           $.shareCodesArr.push(shareCodes[item])
