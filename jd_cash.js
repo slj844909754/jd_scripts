@@ -8,14 +8,11 @@
 [task_local]
 #签到领现金
 2 0 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_cash.js, tag=签到领现金, enabled=true
-
 ================Loon==============
 [Script]
 cron "2 0 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_cash.js,tag=签到领现金
-
 ===============Surge=================
 签到领现金 = type=cron,cronexp="2 0 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_cash.js
-
 ============小火箭=========
 签到领现金 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_cash.js, cronexpr="2 0 * * *", timeout=200, enable=true
  */
@@ -108,21 +105,21 @@ function index(info=false) {
               for(let task of data.data.result.taskInfos){
                 if (task.type === 4) {
                   for (let i = task.doTimes; i < task.times; ++i) {
-                    console.log(`去做${task.name}任务 ${task.doTimes}/${task.times}`)
+                    console.log(`去做${task.name}任务 ${i}/${task.times}`)
                     await doTask(task.type, task.jump.params.skuId)
                     await $.wait(1000)
                   }
                 }
                 else if (task.type === 2) {
                   for (let i = task.doTimes; i < task.times; ++i) {
-                    console.log(`去做${task.name}任务 ${task.doTimes}/${task.times}`)
+                    console.log(`去做${task.name}任务 ${i}/${task.times}`)
                     await doTask(task.type, task.jump.params.shopId)
                     await $.wait(1000)
                   }
                 }
-                else if (task.type === 16 || task.type===3) {
+                else if (task.type === 16 || task.type===3 || task.type===5) {
                   for (let i = task.doTimes; i < task.times; ++i) {
-                    console.log(`去做${task.name}任务 ${task.doTimes}/${task.times}`)
+                    console.log(`去做${task.name}任务 ${i}/${task.times}`)
                     await doTask(task.type, task.jump.params.url)
                     await $.wait(1000)
                   }
@@ -260,7 +257,7 @@ function taskUrl(functionId, body = {}) {
 
 function getAuthorShareCode() {
   return new Promise(resolve => {
-    $.get({url: "https://gitee.com/shylocks/updateTeam/raw/main/jd_cash.json",headers:{
+    $.get({url: "https://gitee.com/slj844909754/updateTeam/raw/master/jd_cash.json",headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }}, async (err, resp, data) => {
       try {
