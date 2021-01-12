@@ -26,8 +26,8 @@ let cookiesArr = [], cookie = '', message;
 let helpAuthor = false;
 const randomCount = $.isNode() ? 20 : 5;
 const inviteCodes = [
-  ``,
-  ``
+  `eU9YaurjMPQu8`,
+  `eU9YaurjMPQu8`
 ]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
