@@ -30,7 +30,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //const WebSocket = $.isNode() ? require('websocket').w3cwebsocket: SockJS;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message,helpInfo;
-const shareUuid = '45da45fae4544aa5a6d78a9171be1e67@cdf7501a24ad44ae9709ba14567e7ebc@565852b472c34dcc879d18d3baa7cade@e3b3af315caf4e5a98123340f4b5c017@958db54562d04c6280167330a445ef94@92baa8dce32144188e928aa8708d8101@8abdb14a46be44b39cb82ef883703c2e@a28086d747694b8d98fe5d0d8a3f2361'
+const shareUuid = '45da45fae4544aa5a6d78a9171be1e67'
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
