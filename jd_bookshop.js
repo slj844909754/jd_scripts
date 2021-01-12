@@ -24,8 +24,8 @@ let cookiesArr = [], cookie = '', message;
 const ACT_ID = 'dz2010100034444201', shareUuid = '28a699ac78d74aa3b31f7103597f8927'
 
 let inviteCodes = [
-  '28a699ac78d74aa3b31f7103597f8927',
-  '28a699ac78d74aa3b31f7103597f8927'
+  'cb1c46cde1c14f66947bb629b490d884',
+  'cb1c46cde1c14f66947bb629b490d884'
 ]
 
 if ($.isNode()) {
