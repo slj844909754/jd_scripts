@@ -21,11 +21,14 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
-const ACT_ID = 'dz2010100034444201', shareUuid = '28a699ac78d74aa3b31f7103597f8927'
+const ACT_ID = 'dz2010100034444201', shareUuid = 'cb1c46cde1c14f66947bb629b490d884'
+let ADD_CART = false
+ADD_CART = $.isNode() ? (process.env.PURCHASE_SHOPS ? process.env.PURCHASE_SHOPS : ADD_CART) : ($.getdata("ADD_CART") ? $.getdata("ADD_CART") : ADD_CART);
+// 加入购物车开关，与东东小窝共享
 
 let inviteCodes = [
-  'cb1c46cde1c14f66947bb629b490d884',
-  'cb1c46cde1c14f66947bb629b490d884'
+  'cb1c46cde1c14f66947bb629b490d884@6467c3f542c546ba8a680caa767eaeaa@7ef546ff87b843a8bab3f60cc4b31e43@a6e2d36e5f08486b8e91c041e6eb9567@efed3b20ee074d29a33cb1aa872fc8d5@64630f5324324719a0ed40557554a36d@4afd97472c9e485fa7a3f2752590dced',
+  'cb1c46cde1c14f66947bb629b490d884@6467c3f542c546ba8a680caa767eaeaa@7ef546ff87b843a8bab3f60cc4b31e43@a6e2d36e5f08486b8e91c041e6eb9567@efed3b20ee074d29a33cb1aa872fc8d5@64630f5324324719a0ed40557554a36d@4afd97472c9e485fa7a3f2752590dced'
 ]
 
 if ($.isNode()) {
@@ -297,7 +300,7 @@ function getActContent(info = false, shareUuid = '') {
               if (!info) {
                 const tasks = data.data.settingVo
                 for (let task of tasks) {
-                  if (['关注店铺', '加购商品'].includes(task.title)) {
+                  if (['关注店铺'].includes(task.title)) {
                     if (task.okNum < task.dayMaxNum) {
                       console.log(`去做${task.title}任务`)
                       await doTask(task.settings[0].type, task.settings[0].value)
@@ -319,6 +322,11 @@ function getActContent(info = false, shareUuid = '') {
                         if (res.result) break
                         await $.wait(500)
                       }
+                    }
+                  } else if (ADD_CART && ['加购商品'].includes(task.title)) {
+                    if (task.okNum < task.dayMaxNum) {
+                      console.log(`去做${task.title}任务`)
+                      await doTask(task.settings[0].type, task.settings[0].value)
                     }
                   }
                 }
@@ -630,7 +638,7 @@ function TotalBean() {
         "Connection": "keep-alive",
         "Cookie": cookie,
         "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0") : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
       }
     }
     $.post(options, (err, resp, data) => {
