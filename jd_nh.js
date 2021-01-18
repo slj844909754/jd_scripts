@@ -13,14 +13,14 @@
 ============Quantumultx===============
 [task_local]
 #京东年货节
-1 7 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_nh.js, tag=京东年货节, enabled=true
+1 7 * * * https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nh.js, tag=京东年货节, enabled=true
 ================Loon==============
 [Script]
-cron "1 7 * * *" script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_nh.js,tag=京东年货节
+cron "1 7 * * *" script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nh.js,tag=京东年货节
 ===============Surge=================
-京东年货节 = type=cron,cronexp="1 7 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_nh.js
+京东年货节 = type=cron,cronexp="1 7 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nh.js
 ============小火箭=========
-京东年货节 = type=cron,script-path=https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_nh.js, cronexpr="1 7 * * *", timeout=200, enable=true
+京东年货节 = type=cron,script-path=https://raw.githubusercontent.com/LXK9301/jd_scripts/master/jd_nh.js, cronexpr="1 7 * * *", timeout=200, enable=true
  */
 const $ = new Env('京东年货节');
 
@@ -30,7 +30,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //const WebSocket = $.isNode() ? require('websocket').w3cwebsocket: SockJS;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message,helpInfo;
-const shareUuid = '45da45fae4544aa5a6d78a9171be1e67'
+let shareUuid = '45da45fae4544aa5a6d78a9171be1e67'
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -49,7 +49,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const ACT_ID = 'dzvm210168869301'
 !(async () => {
   if (!cookiesArr[0]) {
-    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
+    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
   for (let i = 0; i < cookiesArr.length; i++) {
@@ -84,6 +84,7 @@ const ACT_ID = 'dzvm210168869301'
   })
 async function jdNh() {
   $.score = 0
+  await getShareCode()
   await getIsvToken()
   await getIsvToken2()
   await getActCk()
@@ -91,7 +92,36 @@ async function jdNh() {
   await getMyPing()
   await getUserInfo()
   await getActContent(false,shareUuid)
+  await getActContent(true)
+  if($.userInfo.score>=5000){
+    console.log(`大于5000金币，去抽奖`)
+    //await draw()
+  }
   await showMsg();
+}
+
+function getShareCode() {
+  return new Promise(resolve => {
+    $.get({url:'https://gitee.com/shylocks/updateTeam/raw/main/jd_nh.json',headers:{
+        'user-agent': 'JD4iPhone/167490 (iPhone; iOS 14.2; Scale/3.00)'
+      }},(err,resp,data)=>{
+      try {
+        if (err) {
+          console.log(`${err}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            shareUuid = data['shareUuid']
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
 }
 function getIsvToken() {
   let config = {
@@ -110,7 +140,7 @@ function getIsvToken() {
     $.post(config,async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -143,7 +173,7 @@ function getIsvToken2() {
     $.post(config,async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -166,7 +196,7 @@ function getActCk() {
     $.get(taskUrl("dingzhi/vm/template/activity/940531", `activityId=${ACT_ID}`), (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           cookie = `${cookie};`
@@ -195,7 +225,7 @@ function getActInfo() {
     $.post(taskPostUrl('dz/common/getSimpleActInfoVo', `activityId=${ACT_ID}`), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -218,7 +248,7 @@ function getMyPing() {
     $.post(taskPostUrl('customer/getMyPing', `userId=${$.shopId}&token=${$.token2}&fromType=APP`), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -244,7 +274,7 @@ function getUserInfo() {
     $.post(taskPostUrl('wxActionCommon/getUserInfo', body), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -273,7 +303,7 @@ function getActContent(info=false, shareUuid = '') {
       `activityId=${ACT_ID}&pin=${encodeURIComponent($.pin)}&pinImg=${$.pinImg}&nick=${$.nick}&cjyxPin=&cjhyPin=&shareUuid=${shareUuid}`), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -281,8 +311,10 @@ function getActContent(info=false, shareUuid = '') {
             if (data.data) {
               $.userInfo = data.data
               $.actorUuid = $.userInfo.actorUuid
-              if(!info) console.log(`您的好友助力码为${$.actorUuid}`)
+
               if (!info) {
+                console.log(`您的好友助力码为${$.actorUuid}`)
+                console.log(`当前金币${$.userInfo.score}`)
                 for(let i of ['sign','mainActive','visitSku','allFollowShop','allAddSku','memberCard']){
                   let task = data.data[i]
                   if(task.taskName==='浏览会场' || task.taskName==='浏览商品'
@@ -295,12 +327,14 @@ function getActContent(info=false, shareUuid = '') {
                         await $.wait(500)
                       }
                     }
-                  }else if(task.taskName ==='一键关注店铺' || task.taskName ==='一键加购' || task.taskName ==='一键开卡'){
+                  } else if(task.taskName ==='一键关注店铺' || task.taskName ==='一键开卡' // || task.taskName ==='一键加购'
+                  ){
                     if (task.count < task.taskMax){
                       console.log(`去做${task.taskName}任务`)
                       let res = await getTaskInfo(task.taskType)
                       let vo = res[0]
                       await doTask(vo.type, vo.value)
+                      await $.wait(500)
                     }
                   }
                 }
@@ -323,7 +357,7 @@ function getTaskInfo(taskType, value) {
     $.post(taskPostUrl('dingzhi/vm/template/taskInfo', body), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -344,14 +378,14 @@ function getTaskInfo(taskType, value) {
   })
 
 }
-// 做任务
+// 完成任务
 function doTask(taskType, value) {
   let body = `activityId=${ACT_ID}&pin=${encodeURIComponent($.pin)}&actorUuid=${$.actorUuid}&taskType=${taskType}&taskValue=${value}`
   return new Promise(resolve => {
     $.post(taskPostUrl('dingzhi/vm/template/saveTask', body), async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${err},${jsonParse(resp.body)['message']}`)
+          console.log(`${err}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
@@ -379,6 +413,35 @@ function showMsg() {
     $.msg($.name, '', `京东账号${$.index}${$.nickName}\n${message}`);
     resolve()
   })
+}
+//抽奖
+function draw() {
+  let body = `activityId=${ACT_ID}&uuid=${$.actorUuid}&pin=${encodeURIComponent($.pin)}&drawValue=18`
+  return new Promise(resolve => {
+    $.post(taskPostUrl('dingzhi/vm/template/start', body), async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${err}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if (data.result && data.data) {
+              console.log(`抽奖成功，获得 ${data.data.drawInfo || '空气'}`)
+              message += `抽奖成功，获得 ${data.data.drawInfo || '空气'}`
+            } else {
+              console.log(`任务完成失败，错误信息：${data.errorMessage}`)
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+
 }
 function taskUrl(function_id, body) {
   return {
@@ -425,7 +488,7 @@ function TotalBean() {
         "Connection": "keep-alive",
         "Cookie": cookie,
         "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0") : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
       }
     }
     $.post(options, (err, resp, data) => {
