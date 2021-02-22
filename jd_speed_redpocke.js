@@ -163,7 +163,7 @@ function invite() {
   };
   $.post(options, (err, resp, data) => {
     console.log(data)
-    console.log(`您的好友助力码为：${inviteId}`)
+    console.log(`您的好友助力码为：${inviterPin}`)
   })
 }
 
