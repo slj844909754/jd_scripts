@@ -162,7 +162,6 @@ function invite() {
     body: dataString
   };
   $.post(options, (err, resp, data) => {
-    console.log(data)
     console.log(`您的好友助力码为：${inviterPin}`)
   })
 }
