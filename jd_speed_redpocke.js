@@ -79,7 +79,7 @@ async function jsRedPacket() {
   try {
     await invite()
     for (let i = 0; i < 3; ++i) {
-      await redPacket()
+      //await redPacket()
       await $.wait(500)
     }
     await showMsg()
@@ -108,7 +108,7 @@ async function redPacket() {
   };
 
   var options = {
-    url: `https://api.m.jd.com/?functionId=spring_reward_receive&body={%22inviter%22:%22DN935Ow5KGb1YRQWafmCGPQ%22,%22linkId%22:%22FqktpB8R3nkJB8wVh8wC_g%22}&_t=${+new Date()}&appid=activities_platform`,
+    url: `https://api.m.jd.com/?functionId=spring_reward_receive&body={%22inviter%22:%22gLA3fMV-0Lnfs9HSQIRDSdTs-kY-TK7VlF6AAX8mKEA%22,%22linkId%22:%22FqktpB8R3nkJB8wVh8wC_g%22}&_t=${+new Date()}&appid=activities_platform`,
     headers: headers
   }
   return new Promise(resolve => {
@@ -162,7 +162,7 @@ function invite() {
     body: dataString
   };
   $.post(options, (err, resp, data) => {
-    console.log(`您的好友助力码为：${data.data.received.inviterPin}`)
+    console.log(data)
   })
 }
 
