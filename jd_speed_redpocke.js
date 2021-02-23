@@ -79,7 +79,7 @@ async function jsRedPacket() {
   try {
     await invite()
     for (let i = 0; i < 3; ++i) {
-      //await redPacket()
+      await redPacket()
       await $.wait(500)
     }
     await showMsg()
