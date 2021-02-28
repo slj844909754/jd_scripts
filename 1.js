@@ -83,14 +83,14 @@ if ($.isNode()) {
     })
 function receiveRedRain(body) {
     let opt = {
-        url: `https://api.m.jd.com/client.action?functionId=noahRedRainLottery&client=wh5&clientVersion=1.0.0&body=${encodeURIComponent(JSON.stringify(body))}&_=${Date.now()}&callback=jsonp2`,
+        url: `https://api.m.jd.com/client.action?functionId=genToken&client=android&clientVersion=9.3.7&body=${encodeURIComponent(JSON.stringify(body))}&_=${Date.now()}&callback=jsonp2`,
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Encoding': 'br,gzip,deflate',
             'Connection': 'keep-alive',
             'Cookie': cookie,
             'Accept': 'application/json, text/plain, */*',
-            'User-Agent': 'jdapp;iPhone;9.3.8;14.3;network/wifi;ADID/;supportApplePay/0;hasUPPay/0;hasOCPay/0;model/iPhone10,3;addressid/97911903;supportBestPay/0;appBuild/167538;jdSupportDarkMode/0;pv/40.250;apprpd/Live_Room;ref/SHVPMainPageViewController;psq/89;ads/;psn/;jdv/;adk/;app_device/IOS;pap/JA2015_311210|9.3.8|IOS 14.3;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
+            'User-Agent': 'jdapp;android;9.3.7;9;3353439393130393030353439313-93D2030303166653363683666323;network/wifi;model/LM-G710;addressid/2882262704;aid/cf80d54fb1a40827;oaid/;osVer/28;appBuild/86567;partner/jingdong;eufv/1;jdSupportDarkMode/0;Mozilla/5.0 (Linux; Android 9; LM-G710 Build/PKQ1.181105.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/66.0.3359.126 MQQBrowser/6.2 TBS/044942 Mobile Safari/537.36',
             'Accept-Language': 'zh-cn',
             'Referer': `https://h5.m.jd.com/active/redrain/index.html?id=${$.activityId}&lng=&lat=&sid=&un_area=`
         }
